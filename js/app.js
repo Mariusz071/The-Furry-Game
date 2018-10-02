@@ -32,20 +32,17 @@ var Game = function () {
         this.hideVisibleFurry();
         if (this.furry.direction === "right") {
             this.furry.x = this.furry.x + 1;
-            this.gameOver();
         } else if (this.furry.direction === "left") {
             this.furry.x = this.furry.x - 1;
-            this.gameOver();
         } else if (this.furry.direction === "up") {
             this.furry.y = this.furry.y + 1;
-            this.gameOver();
         } else if (this.furry.direction === "down") {
             this.furry.y = this.furry.y - 1;
-            this.gameOver();
         }
 
         this.showFurry();
         this.checkCoinCollision();
+        this.gameOver();
     };
 
 
@@ -76,7 +73,7 @@ var Game = function () {
 
         if (this.furry.x == this.coin.x && this.furry.y == this.coin.y) {
             document.querySelector('.coin').classList.remove('coin');
-            score = document.querySelector('#score strong');
+            self.score = document.querySelector('#score strong');
             score.textContent = parseInt(score.textContent) + 1;
             this.coin = new Coin();
             this.showCoin();
@@ -89,7 +86,6 @@ var Game = function () {
             clearInterval(this.idSetInterval);
             this.hideVisibleFurry();
             console.log('game over');
-            return true;
         }
     };
 
