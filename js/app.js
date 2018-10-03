@@ -14,14 +14,15 @@ var Game = function () {
     this.board = document.querySelectorAll('#board > div');
     this.furry = new Furry();
     this.coin = new Coin();
-    this.score = 0;
 
     this.index = function (x, y) {
         return x + (y * 10);
     };
+
     this.showFurry = function () {
         this.board[this.index(this.furry.x, this.furry.y)].classList.add('furry');
     };
+
     this.showCoin = function () {
         this.board[this.index(this.coin.x, this.coin.y)].classList.add('coin');
     };
@@ -40,9 +41,8 @@ var Game = function () {
             this.furry.y = this.furry.y - 1;
         }
 
-        this.showFurry();
-        this.checkCoinCollision();
         this.gameOver();
+        this.checkCoinCollision();
     };
 
 
@@ -84,13 +84,15 @@ var Game = function () {
         if (this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9) {
             // alert('Game over');
             clearInterval(this.idSetInterval);
-            this.hideVisibleFurry();
             console.log('game over');
+        } else {
+            this.showFurry();
         }
     };
 
     this.gameStart = function () {
         var self = this;
+        game.gameOver();
         game.showFurry();
         game.showCoin();
         this.idSetInterval = setInterval(function() {
