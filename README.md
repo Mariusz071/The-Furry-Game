@@ -326,12 +326,12 @@ var game = new Game();
 ## 14. Podział na moduły
 
 Kolejnym i ostatnim już krokiem jest podział naszej gry na moduły. Stwórz w folderze js następujące pliki:
-    * coin.js
-    * furry.js
+    * Hugger.js
+    * Predator.js
     * game.js - tutaj będziemy potrzebowali konstruktora `Coin()` oraz `Furry()`
     * app.js - ten plik już masz, tutaj będziemy potrzebowali konstruktora `Game()`.
 
-Podziel odpowiednio Twoją aplikację umieszczając w każdym z modułów odpowiedni konstruktor. Jak się domyślasz do modułu `coin.js` musisz przenieść konstruktor `Coin()`. Analogicznie zrób z innymi modułami. Pamiętaj, aby moduły były eksportowane i importowane do innych.
+Podziel odpowiednio Twoją aplikację umieszczając w każdym z modułów odpowiedni konstruktor. Jak się domyślasz do modułu `Hugger.js` musisz przenieść konstruktor `Coin()`. Analogicznie zrób z innymi modułami. Pamiętaj, aby moduły były eksportowane i importowane do innych.
 
 Pamiętasz funkcję `require()` oraz jak eksportujemy moduły?
 

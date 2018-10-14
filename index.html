@@ -5,18 +5,21 @@
     <meta charset="utf-8">
     <title>Javascript Furry game</title>
     <link rel='stylesheet' href='css/style.css'>
-
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 </head>
 
 <body>
 
+<section id='start' >
+  <button>Start game</button>
+</section>
+
   <section id='score'>
     <div>
-      SCORE<br>
+      <p>Face huggers killed: </p>
       <strong>0</strong>
     </div>
   </section>
-
 
 
   <section id='board'>
@@ -124,9 +127,17 @@
 
 
   <section id='over' class='invisible'>
-
+    <h2>Game over, you died.</h2>
+    <button class="restart" onClick="window.location.reload()">Main menu</button>
   </section>
-
+  <audio src="./sounds/predatordeath.wav" id="death"></audio>
+  <audio src="./sounds/alienmunch.wav" id="alienmunch"></audio>
+  <audio src='./sounds/facehuggerdeath.wav' id="scored"></audio>
+  <audio src="./sounds/menu.wav" id="menu" autoplay></audio>
+  <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
   <script src='js/out.js' defer></script>
 </body>
 

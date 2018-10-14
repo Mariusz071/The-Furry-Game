@@ -1,11 +1,19 @@
-var Game = require('./game.js');
+$(function () {
 
-var game = new Game();
-game.showFurry();
-game.showCoin();
-game.gameStart();
+    var startButton = document.querySelector('#start button');
+
+    startButton.addEventListener('click', function () {
+        var Game = require('./game.js');
+        var game = new Game();
+        game.showPredator();
+        game.showHugger();
+        game.showAlien();
+        game.gameStart();
+        startButton.parentElement.classList.add('invisible');
 
 
-document.addEventListener('keydown', function (event) {
-    game.turnFurry(event);
+        document.addEventListener('keydown', function (event) {
+            game.turnPredator(event);
+        });
+    })
 });

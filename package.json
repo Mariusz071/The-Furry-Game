@@ -1,27 +1,29 @@
 {
-  "name": "WRO_FER_S_15_REACT_Furry_Game",
+  "name": "webpack_template",
   "version": "1.0.0",
-  "description": "<img alt=\"Logo\" src=\"http://coderslab.pl/svg/logo-coderslab.svg\" width=\"400\">",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-      "build": "webpack --mode production ./js/app.js --output ./js/out.js",
-        "dev": "webpack --mode development ./js/app.js --output ./js/out.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mariusz071/WRO_FER_S_15_REACT_Furry_Game.git"
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Mariusz071/WRO_FER_S_15_REACT_Furry_Game/issues"
-  },
-  "homepage": "https://github.com/Mariusz071/WRO_FER_S_15_REACT_Furry_Game#readme",
-  "dependencies": {
-    "webpack": "^4.20.2"
-  },
   "devDependencies": {
+    "autoprefixer": "^8.6.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.9.3",
+    "postcss-loader": "^2.1.6",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   }
 }

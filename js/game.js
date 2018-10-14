@@ -1,91 +1,108 @@
+$(function () {
 
-var Furry = require('./furry.js');
-var Coin = require('./coin.js');
+});
+
+var Predator = require('./Predator.js');
+var Hugger = require('./Hugger.js');
+var Alien = require('./alien.js');
+var sounds = require('./sounds.js')
 
 var Game = function () {
     this.board = document.querySelectorAll('#board > div');
-    this.furry = new Furry();
-    this.coin = new Coin();
+    this.Predator = new Predator();
+    this.Hugger = new Hugger();
+    this.alien = new Alien();
 
     this.index = function (x, y) {
         return x + (y * 10);
     };
 
-    this.showFurry = function () {
-        this.board[this.index(this.furry.x, this.furry.y)].classList.add('furry');
+    this.showPredator = function () {
+        this.board[this.index(this.Predator.x, this.Predator.y)].classList.add('Predator');
     };
 
-    this.showCoin = function () {
-        this.board[this.index(this.coin.x, this.coin.y)].classList.add('coin');
+    this.showHugger = function () {
+        this.board[this.index(this.Hugger.x, this.Hugger.y)].classList.add('Hugger');
     };
 
+    this.showAlien = function () {
+        this.board[this.index(this.alien.x, this.alien.y)].classList.add('alien');
+    }
 
 
-    this.moveFurry = function () {
-        this.hideVisibleFurry();
-        if (this.furry.direction === "right") {
-            this.furry.x = this.furry.x + 1;
-        } else if (this.furry.direction === "left") {
-            this.furry.x = this.furry.x - 1;
-        } else if (this.furry.direction === "up") {
-            this.furry.y = this.furry.y + 1;
-        } else if (this.furry.direction === "down") {
-            this.furry.y = this.furry.y - 1;
+
+    this.movePredator = function () {
+        this.hideVisiblePredator();
+        if (this.Predator.direction === "right") {
+            this.Predator.x = this.Predator.x + 1;
+        } else if (this.Predator.direction === "left") {
+            this.Predator.x = this.Predator.x - 1;
+            //$('.Predator').css("background-image", "../images/predator-left.png");
+        } else if (this.Predator.direction === "up") {
+            this.Predator.y = this.Predator.y + 1;
+        } else if (this.Predator.direction === "down") {
+            this.Predator.y = this.Predator.y - 1;
         }
 
         this.gameOver();
-        this.checkCoinCollision();
+        this.checkHuggerCollision();
     };
 
 
-    this.hideVisibleFurry = function () {
-        document.querySelector('.furry').classList.remove('furry');
+    this.hideVisiblePredator = function () {
+        document.querySelector('.Predator').classList.remove('Predator');
     };
 
-    this.turnFurry = function (event) {
+    this.turnPredator = function (event) {
         switch (event.which) {
             case 37:
-                this.furry.direction = 'left';
+                this.Predator.direction = 'left';
                 break;
 
             case 38:
-                this.furry.direction = "down";
+                this.Predator.direction = "down";
                 break;
 
             case 39:
-                this.furry.direction = "right";
+                this.Predator.direction = "right";
                 break;
 
             case 40:
-                this.furry.direction = "up";
+                this.Predator.direction = "up";
         }
     };
 
-    this.checkCoinCollision = function () {
-
-        if (this.furry.x == this.coin.x && this.furry.y == this.coin.y) {
-            document.querySelector('.coin').classList.remove('coin');
+    this.checkHuggerCollision = function () {
+        if (this.Predator.x == this.Hugger.x && this.Predator.y == this.Hugger.y) {
+            document.querySelector('.Hugger').classList.remove('Hugger');
+            this.audio = document.getElementById('scored').play();
+            console.log(document.getElementById('scored'));
             self.score = document.querySelector('#score strong');
             score.textContent = parseInt(score.textContent) + 1;
-            this.coin = new Coin();
-            this.showCoin();
+            this.Hugger = new Hugger();
+            this.showHugger();
+            this.alien = new Alien();
+            this.showAlien();
         }
     };
 
+
     this.gameOver = function () {
-        if (this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9) {
-            // alert('Game over');
+        if (this.Predator.x < 0 || this.Predator.x > 9 || this.Predator.y < 0 || this.Predator.y > 9 || this.Predator.y === this.alien.y
+        && this.Predator.x === this.alien.x) {
+            document.getElementById('over').classList.remove('invisible');
             clearInterval(this.idSetInterval);
-            console.log('game over');
+            document.getElementById('#alienmunch').play();
+
         } else {
-            this.showFurry();
+            this.showPredator();
         }
     };
 
     this.gameStart = function () {
         var self = this;
         this.idSetInterval = setInterval(function() {
-            self.moveFurry();
+            self.movePredator();
         }, 200);
     }
 };
